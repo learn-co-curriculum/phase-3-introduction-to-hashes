@@ -1,24 +1,13 @@
-# Hashes
+# Ruby Hashes
 
-## Overview
+## Learning Goals
 
-We'll introduce a new data structure called hashes. We'll cover how to create
-them, retrieve data from, and add data to them.
+- Define a Ruby hash
+- Define hash keys and values
+- Create a hash using its implicit form
+- Create a hash with `Hash.new`
 
-## Objectives
-
-1.  Describe the structure of hashes and how they allow for data storage.
-2.  Create hashes using the literal constructor.
-3.  Retrieve data from hashes using the "bracket" method.
-4.  Add data to hashes using the "bracket-equals" method.
-
-<iframe width="640" height="480" src="https://www.youtube.com/embed/0JSsFQGYaeA" frameborder="0" allowfullscreen></iframe>
-
-### Why Hashes
-
-> Hashes are a lot like arrays: they have a bunch of slots that can point to various objects. However, in an array, the slots are lined up in a row, and each one is numbered (starting from zero). In a hash, the slots aren’t in a row (they are just sort of jumbled together) and you can use any object to refer to a slot, not just a number.
->
-> — [Chris Pine, _Learn to Program_, 2nd edition, pages 97-98](https://pine.fm/LearnToProgram/)
+## Introduction
 
 Up until this point, we've stored our data in list-form using arrays. An array
 is like a numbered list. It stores a group of items which are accessible via
@@ -52,264 +41,124 @@ Hashes allow us to store named, or associated, data. Think of a dictionary or an
 address book. This allows us to store more complex collections of information
 than the arrays we've seen so far.
 
-## Hash Structure and Usage
+In this lesson, we'll introduce a new data structure called hashes and cover how
+to create them.
 
-Hashes are structured with keys and values. Each key/value pair makes up one
-unit in the hash. The entire collection of key/value pairs, which are comma
-separated, is enclosed in curly braces `{ }`.
+## Define a Ruby Hash
+
+A hash is a collection of data that is separated into pairs of keys and values.
+Each key/value pair makes up one unit in the hash. The entire collection of
+key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 
 ```ruby
-hash = {"key" => "value", "another_key" => "another value"}
+{"key" => "value", "another_key" => "another value"}
 ```
 
-You can think of a hash as a dictionary. The key is the reference point that is
-set equal to an associated value. A vocabulary dictionary actually makes a
-pretty good example of the hash structure:
+## Define Hash Keys and Values
+
+In earlier lessons, we discussed variable assignment:
 
 ```ruby
-dictionary = {
+apple = "a delicious fruit"
+garlic = "an herb used for flavoring in many cuisines"
+cheese = "a dairy product derived from the coagulation of milk protein"
+```
 
+Variables are great for storing single bits of data so that we can _look up_ the
+data later. Key value pairs are similar. The key is the reference point, set
+equal to a value. Using a hash key, we can _look up_ the associated value
+later.
+
+Using a hash, we could represent the same values from above like so:
+
+```ruby
+{
   "apple" => "a delicious fruit",
-  "this readme" => "wonderful and informative piece of reading",
-  "Moby Dick" => "a novel by my good friend, Herman Melville"
-
+  "garlic" => "an herb used for flavoring in many cuisines",
+  "cheese" => "a dairy product derived from the coagulation of milk protein"
 }
 ```
 
-**//Flat-fact:** _In fact, "dictionary" is how the hash structure is known in
-some other programming languages such as Python and Objective-C._
+The above hash has three key/value pairs. The first key of this hash is
+`"apple"`. `"apple"` is set to a value, `"a delicious fruit"`. This relationship
+is indicated by using the `=>` symbol (sometimes lovingly referred to as a
+"hash-rocket").
 
-Keys in hashes can be any type of data: strings, integers or symbols (more on
-symbols later, don't worry about them for now). They are set equal to their
-associated values by using the `=>` symbol, known for this use as the
-"hash-rocket" (_because it looks like a little rocket shooting off towards the
-right_).
+Although we can store the same values in a set of variables, by including them
+together in a hash, we are _associating_ them through the structure of our code.
 
-### Example: Named Data
-
-You can think of the data stored in a hash as being _associative_. In other
-words, keys point to data that is _related_ to that key. Let's take a look at
-the following example:
+Hash keys can be any type of data but most of the time we use [strings][]
+(as seen in the above example) or [symbols][]:
 
 ```ruby
-the_rock = {"name" => "Dwayne, The Rock, Johnson", "weight" => "a lot"}
+{:name => "John Henry", :occupation => "Steel-driving man"}
 ```
 
-If we tried to represent this same information as an array, it would look
-something like this:
+Hash values can also be any type of data, including arrays and even other
+hashes!
 
 ```ruby
-the_rock = ["name", "Dwayne, The Rock, Johnson", "weight", "a lot"]
+{:item => "banana", :price => 0.89, :quantity => 6, :description => "a delicious fruit"}
 ```
 
-Then, in order to access The Rock's name, we would have to use the following
-line of code:
+## Create a Hash
+
+The easiest way to create a hash is to write it out as we've seen in the
+examples so far.
 
 ```ruby
-the_rock[1]
-```
-
-That requires us to remember, every time we want to access The Rock's name, that
-it is stored at the first index of `the_rock` array. That is too hard to keep
-track of.
-
-In our `the_rock` hash, we have two key/value pairs. We have a key of `"name"`,
-which points to an associated value of The Rock's name. We have a key of
-`"weight"` which points to an associated value of The Rock's (real) weight. In
-this way, we are able to store data about The Rock in an organized and
-understandable manner.
-
-#### Hash Keys and Uniqueness
-
-A key in a hash can be a string, a symbol, or an integer as long as you only use
-each key once. This is because, unlike arrays, which store data in numbered
-indexes and access that data via the index numbers, hashes store data in keys
-and access that data by naming the key whose value we want to retrieve.
-
-If you try to add a second key that duplicates an existing key, you will
-overwrite the value of the existing key, _instead of adding a new key/value
-pair_. Not only will duplicate hash keys simply not work as a way to store
-information, it just doesn't make sense.
-
-Hashes are for storing named, or associative, data. Each key/value pair
-describes a unique attribute or unit of information. A person doesn't have two
-names, in reality. They might, though, have a name and a nickname. The data
-structure we are creating should mirror the real-world entity we are trying to
-describe. The uniqueness of our hash keys reflects that.
-
-```ruby
-the_rock = {"name" => "Dwayne Johnson", "stage_name" => "The Rock", "weight" => "a lot"}
-```
-
-### Example: Counting Data
-
-![Herman Melville](http://flatiron-labs.s3.amazonaws.com/160px-Herman_Melville.jpg)
-
-The year is 1866 and we work beside [Herman Melville][melville] (author of Moby
-Dick) as a customs inspector in New York. (I know, when did our lives become so
-old-timey and exciting?) We're in charge of inspecting an incoming shipment and
-we need to track the items we're inspecting by listing each type of item (such
-as: whale bone corsets, porcelain vases, and oil paintings) along with the
-number of each kind of item in the shipment.
-
-Let's say our shipment contains five (5) whale bone corsets, two (2) porcelain
-vases, and three (3) oil paintings. If we tried to store them in an array in
-list form, it would look like this:
-
-```ruby
-old_fashioned_things = [
-  "whale bone corset",
-  "whale bone corset",
-  "whale bone corset",
-  "whale bone corset",
-  "whale bone corset",
-  "porcelain vase",
-  "porcelain vase",
-  "oil painting",
-  "oil painting",
-  "oil painting"
-]
-```
-
-As it stands, there is no way for us to include the count of each item in a way
-that associates the item to its count, so we have to store a separate occurrence
-of that item in order to track the shipment. Certainly for a small list this is
-manageable, but what happens when the shipment of Herman's first printing of
-_Moby Dick_ arrives? We'd have to store 10,000 occurrences of the book instead
-of recording the count as value. That's no good!
-
-So, how else can we help Herman keep track of how many of each item are included
-in the shipment? Here's where a hash can come in handy. With a hash, we can
-store a list of associated key/value pairs. In other words, we can store the
-pairs of item/count:
-
-```ruby
-old_fashioned_things = {
-  "whale bone corset" => 5,
-  "porcelain vase" => 2,
-  "oil painting" => 3
+new_hash = {
+  :created => Time.now,
+  :message => "Hello world!"
 }
-
-first_printing = {
-  "Moby Dick" => 10000
-}
+#=> {:created=>2019-04-10 14:05:33 -0400, :message=>"Hello world!"}
 ```
 
-We'll be done recording these shipments in no time!
+This is what is referred to as the _implicit_ form. When assigning a variable
+Ruby will interpret the curly braces on the left hand side as a hash.
 
-## Creating Hashes
-
-We can make a new hash via the literal constructor, just like arrays.
-
-### The Literal Constructor
+Once created, we can access this hash with our `new_hash` variable:
 
 ```ruby
-my_hash = {}
+new_hash
+#=> {:created=>2019-04-10 13:42:27 -0400, :message=>"Hello world!"}
+```
+
+Alternatively, we can use `Hash.new` to create a new hash:
+
+```ruby
+second_new_hash = Hash.new
 #=> {}
 ```
 
-Initializing a hash that already contains data is a lot like initializing an
-array with data. We use the literal constructor:
+This is the same as writing:
 
 ```ruby
-pets = {"cat" => "Maru", "dog" => "Pluto"}
-#=> {"cat" => "Maru", "dog" => "Pluto"}
+second_new_hash = {}
+#=> {}
 ```
 
-In the upcoming lab, you'll get a chance to practice making your own hashes.
+## Conclusion
 
-**Note:** You may see something called the "class constructor", `Hash.new`, if
-you read outside sources on Hashes. Don't worry about this for now. We'll learn
-more about it later.
+We're just getting started with hashes, but hopefully you can already see why
+they might be useful. With hashes, we can use hash keys as a way of
+_naming_ individual pieces of data. Including multiple key/value pairs allows us
+to _associate_ different bits of data, bundling them all up into one object.
 
-## Retrieving Data from Hashes
-
-Retrieving data from a hash is similar to retrieving data from an array, but
-instead of giving an array the index number in brackets `[i]` we give a hash the
-name of the key `[key]`. If an array is a list in which we access index items by
-their number, a hash is a dictionary in which we access values by their key.
-
-```ruby
-pets = {"cat" => "Maru", "dog" => "Pluto"}
-
-pets["cat"]
-#=> "Maru"
-```
-
-Using `[]` is referred to as the **"bracket method".** It is actually a method
-just like any other––just like the methods you've been defining and like the
-methods available on objects such as Strings.
-
-## Adding Keys and Values to Hashes
-
-Adding items to hashes is easy. Instead of `<<` (the shovel method) that we use
-to add items to arrays, hashes use the **"bracket-equals"** method to add data.
-The full syntax for this takes the form of:
-
-```ruby
-person = {
-  "name" => "Corinna",
-  "age" => 36
-}
-
-# We can read Corinna's age with:
-person["age"] #=> 36
-
-# To add a key to the person hash:
-person["hometown"] = "Massena, NY"
-person["hometown"] #=> "Massena, NY"
-
-# Let's add another key
-person["favorite_thing"] = "Books"
-person["favorite_thing"] #=> "Books"
-```
-
-The general syntax for adding a new value to a hash is: `hash["new_key"] = "New Value"`. `"new_key"` is the literal new key we added to the hash and we assigned
-the `"new_key"` a value of `"New Value"`.
-
-Let's think about the distinction between the `<<` method for arrays and the `[]=`,
-or bracket-equals, method of adding data to hashes.
-
-Hashes are _not numbered lists_. The data stored in them is not indexed by
-number, but instead associated to a unique key. Consequently a hash has no
-concept of the "end of the list", like an array. So the `<<` method, which tells
-the array to find the end of the list and add the new item to the next index,
-can't work on a hash.
-
-While we were busy plugging away at our shipping manifest, Herman discovered an
-attempt to smuggle ten (10) jars of molasses past the inspection. Since molasses
-isn't illegal Herman decided not to confiscate it, but we do need to add it to
-the manifest so the merchant gets taxed on it. Accomplishing this with our hash
-would look like this:
-
-```ruby
-shipping_manifest = {
-  "whale bone corset" => 5,
-  "porcelain vase" => 2,
-  "oil painting" => 3
-}
-
-shipping_manifest["jar of molasses"] = 10
-
-puts shipping_manifest
-# {
-#   "whale bone corset" => 5,
-#   "porcelain vase" => 2,
-#   "oil painting" => 3,
-#   "jar of molasses" => 10
-# }
-```
-
-By the way, a hash that has counts of occurrences is a common data structure in
-programming, useful for generating charts and more. They are called
-[Histograms][histograms].
-
-Enjoy hashing it out!
+Now that we can create hashes and store data as key/value pairs, in the next
+lesson, we'll look at how we can access that data. Given a dictionary and a
+particular word, we can look up the definition of that word. Similarly, given
+a hash and a key in that hash, we can look up the value assigned to that key.
 
 ## Resources
 
-- [Intro to Hashes](http://ruby-for-beginners.rubymonstas.org/built_in_classes/hashes.html)
-- [Ruby Hash Class](https://ruby-doc.org/core-2.5.1/Hash.html)
+- [Intro to Hashes Video][video]
+- [Ruby Hash Class][hashes]
 
+[video]: https://www.youtube.com/embed/0JSsFQGYaeA
+[hashes]: https://ruby-doc.org/core-2.5.0/Hash.html
+[symbols]: https://ruby-doc.org/core-2.5.0/Symbol.html
+[strings]: https://ruby-doc.org/core-2.5.0/String.html
+[integers]: https://ruby-doc.org/core-2.5.0/Integer.html
 [histograms]: https://en.wikipedia.org/wiki/Histogram#Examples
 [melville]: https://en.wikipedia.org/wiki/Herman_Melville
