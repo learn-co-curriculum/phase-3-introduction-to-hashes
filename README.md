@@ -39,9 +39,6 @@ complex collections of information than the arrays we've seen so far. With a
 hash, we can group our data into the necessary categories of "grocery",
 "pharmacy", and "stationery".
 
-In this lesson, we'll introduce a new data structure called hashes and cover how
-to create them.
-
 ## Define a Ruby Hash
 
 A hash is a collection of data that is separated into pairs of keys and values.
