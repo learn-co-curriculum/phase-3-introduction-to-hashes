@@ -41,7 +41,7 @@ hash, we can group our data into the necessary categories of "grocery",
 
 ## Define a Ruby Hash
 
-A hash is a collection of data that is separated into pairs of keys and values.
+A _hash_ is a collection of data that is separated into pairs of keys and values.
 Each key/value pair makes up one unit in the hash. The entire collection of
 key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 
