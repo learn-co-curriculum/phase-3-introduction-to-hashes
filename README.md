@@ -3,15 +3,17 @@
 ## Learning Goals
 
 - Define a Ruby hash
-- Define hash keys and values
-- Create a hash using its implicit form
-- Create a hash with `Hash.new`
+- Define hash keys
+- Define hash values
+- Create a Hash using its implicit ("Hash-Literal") form
+- Create a Hash with `Hash.new`
 
 ## Introduction
 
-Up until this point, we've stored our data in list-form using arrays. An array
-is like a numbered list. It stores a group of items which are accessible via
-their location, or index number, in the list.
+Up until this point, we've stored our data in a list form using arrays. An
+array is like a numbered list. It stores a group of items which are accessible
+via their location, or index number, in the list. A `Hash`, in comparison is a
+"lookup table" like a dictionary.
 
 Imagine a grocery list: you need to go to the store and buy milk, eggs and
 bread. You could store your list like this:
@@ -20,24 +22,28 @@ bread. You could store your list like this:
 groceries = ["milk", "eggs", "bread"]
 ```
 
-What happens when your list expands to include your other errands? Let's say you
-need to go the grocery store, the pharmacy, and the stationery store (you've
-been using up a lot of paper as you take copious notes on learning to code).
-
-We could make one giant array that contains all of the items you need to buy:
+But now let's say we wanted to "look up" the prices of these items. We could
+write:
 
 ```ruby
-stuff_i_need = ["milk", "eggs", "bread", "toothpaste", "band-aids", "paper", "pens", "highlighter"]
+prices = [3.00, 2.15, 2.35] # milk, eggs, bread prices
 ```
 
-This isn't very organized though. There is no way to distinguish the different
-categories of items.
+But wait, why not write this as:
 
-This is where hashes come in. Hashes allow us to store named, or associated,
-data. Think of a dictionary or an address book. This allows us to store more
-complex collections of information than the arrays we've seen so far. With a
-hash, we can group our data into the necessary categories of "grocery",
-"pharmacy", and "stationery".
+```ruby
+prices = [2.35, 3.00, 2.15]  # bread, milk, eggs prices
+```
+
+Well, that's perfectly _legal_ as well to Ruby. But what we want is a way to
+associate the word `"milk"` to the price `3.00`. A code comment isn't a strong
+enough bond between the `String` (grocery item) and the `Float` (price).When
+you need to associate a value with a lookup "_key_", you want a `Hash`.
+
+Hashes allow us to store named, or associated, data. Think of a dictionary or
+an address book. This allows us to store more complex collections of
+information than the arrays we've seen so far. With a hash, we can associate
+item names to prices.
 
 ## Define a Ruby Hash
 
@@ -49,56 +55,65 @@ key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 {"key" => "value", "another_key" => "another value"}
 ```
 
-## Define Hash Keys and Values
-
-In earlier lessons, we discussed variable assignment:
-
-```ruby
-apple = "a delicious fruit"
-garlic = "an herb used for flavoring in many cuisines"
-cheese = "a dairy product derived from the coagulation of milk protein"
-```
-
-Variables are great for storing single bits of data so that we can _look up_ the
-data later. Key value pairs are similar. The key is the reference point, set
-equal to a value. Using a hash key, we can _look up_ the associated value
-later.
-
-Using a hash, we could represent the same values from above like so:
+As with Hashes, you can use white space to make it more friendly for humans to
+read:
 
 ```ruby
 {
-  "apple" => "a delicious fruit",
-  "garlic" => "an herb used for flavoring in many cuisines",
-  "cheese" => "a dairy product derived from the coagulation of milk protein"
+  "key" => "value",
+  "another_key" => "another value"
 }
 ```
 
-The above hash has three key/value pairs. The first key of this hash is
-`"apple"`. `"apple"` is set to a value, `"a delicious fruit"`. This relationship
-is indicated by using the `=>` symbol (sometimes lovingly referred to as a
+Remember just a moment ago we were asking how to associate a grocery item to a
+price? Here's how a `Hash` allows us to do that:
+
+```ruby
+prices = {
+"bread" => 2.35,
+"milk" =>  3.00,
+"eggs" =>  2.15
+}
+```
+
+The relationship between a _key_ (or lookup name) and its associated value is
+indicated by using the `=>` symbol (sometimes lovingly referred to as a
 "hash-rocket").
 
-Although we can store the same values in a set of variables, by including them
-together in a hash, we are _associating_ them through the structure of our code.
+## Define Hash Keys
 
-Hash keys can be any type of data but most of the time we use [strings][]
-(as seen in the above example) or [symbols][]:
+_Keys_ are the things we look up by, in our grocery prices example these are
+the `String`s `"bread"`, `"milk"`, and `"eggs"`.
+
+Hash keys can be any type of data but most of the time we use [strings][] (as
+seen in the grocery / prices example) or [symbols][]:
 
 ```ruby
 {:name => "John Henry", :occupation => "Steel-driving man"}
 ```
 
-Hash values can also be any type of data, including arrays and even other
-hashes!
+Most of the time, Rubyists prefer symbols (there are performance reasons that
+we'll cover elsewhere).
+
+## Define Hash Values
+
+Hash values are the bits of data that are returned when we give a `Hash` a
+_key_ to use to do a look up. The values in the grocery / prices example are:
+`2.35`, `3.00`, and `2.15`.
+
+_Keys_ are the things we look up by, in our grocery example these are the
+`String`s `"bread"`, `"milk"`, and `"eggs"`.
+
+Hash values don't need to contain values of all the same type. You can have
+`String`s, other scalar data, or even other `Array`s or `Hash`es!
 
 ```ruby
 {:item => "banana", :price => 0.89, :quantity => 6, :description => "a delicious fruit"}
 ```
 
-## Create a Hash
+## Create a Hash using its implicit ("Hash-Literal") form
 
-The easiest way to create a hash is to write it out as we've seen in the
+The easiest way to create a `Hash` is to write it out as we've seen in the
 examples so far.
 
 ```ruby
@@ -109,8 +124,9 @@ new_hash = {
 #=> {:created=>2019-04-10 14:05:33 -0400, :message=>"Hello world!"}
 ```
 
-This is what is referred to as the _implicit_ form. When assigning a variable
-Ruby will interpret the curly braces on the left hand side as a hash.
+This is what is referred to as the _implicit_ or "`Hash` literal" form. When
+assigning a variable, Ruby will interpret the curly braces on the left hand
+side as a Hash.
 
 Once created, we can access this hash with our `new_hash` variable:
 
@@ -118,6 +134,8 @@ Once created, we can access this hash with our `new_hash` variable:
 new_hash
 #=> {:created=>2019-04-10 13:42:27 -0400, :message=>"Hello world!"}
 ```
+
+## Create a Hash with `Hash.new`
 
 Alternatively, we can use `Hash.new` to create a new hash:
 
@@ -136,14 +154,12 @@ second_new_hash = {}
 ## Conclusion
 
 We're just getting started with hashes, but hopefully you can already see why
-they might be useful. With hashes, we can use hash keys as a way of
-_naming_ individual pieces of data. Including multiple key/value pairs allows us
-to _associate_ different bits of data, bundling them all up into one object.
+they might be useful. With hashes, we can use hash keys as a way of _naming_
+individual pieces of data. Including multiple key/value pairs allows us to
+_associate_ different bits of data, bundling them all up into one object.
 
 Now that we can create hashes and store data as key/value pairs, in the next
-lesson, we'll look at how we can access that data. Given a dictionary and a
-particular word, we can look up the definition of that word. Similarly, given
-a hash and a key in that hash, we can look up the value assigned to that key.
+lesson, we'll look at how we can access, update, and even delete those "pairs."
 
 ## Resources
 
