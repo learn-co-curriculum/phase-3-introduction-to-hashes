@@ -12,7 +12,7 @@
 
 Up until this point, we've stored our data in a list form using arrays. An
 array is like a numbered list. It stores a group of items which are accessible
-via their location, or index number, in the list. A `Hash`, in comparison is a
+via their location, or index number, in the list. A `Hash`, in comparison, is a
 "lookup table" like a dictionary.
 
 Imagine a grocery list: you need to go to the store and buy milk, eggs and
@@ -86,7 +86,7 @@ _Keys_ are the things we look up by, in our grocery prices example these are
 the `String`s `"bread"`, `"milk"`, and `"eggs"`.
 
 Hash keys can be any type of data but most of the time we use [strings][] (as
-seen in the grocery / prices example) or [symbols][]:
+seen in the grocery/prices example) or [symbols][]:
 
 ```ruby
 {:name => "John Henry", :occupation => "Steel-driving man"}
@@ -153,7 +153,7 @@ second_new_hash = {}
 
 ## Conclusion
 
-We're just getting started with hashes, but hopefully you can already see why
+We're just getting started with hashes, but hopefully, you can already see why
 they might be useful. With hashes, we can use hash keys as a way of _naming_
 individual pieces of data. Including multiple key/value pairs allows us to
 _associate_ different bits of data, bundling them all up into one object.
