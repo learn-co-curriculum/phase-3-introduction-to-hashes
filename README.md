@@ -37,7 +37,7 @@ prices = [2.35, 3.00, 2.15]  # bread, milk, eggs prices
 
 Well, that's perfectly _legal_ as well to Ruby. But what we want is a way to
 associate the word `"milk"` to the price `3.00`. A code comment isn't a strong
-enough bond between the `String` (grocery item) and the `Float` (price).When
+enough bond between the `String` (grocery item) and the `Float` (price). When
 you need to associate a value with a lookup "_key_", you want a `Hash`.
 
 Hashes allow us to store named, or associated, data. Think of a dictionary or
@@ -47,9 +47,9 @@ item names to prices.
 
 ## Define a Ruby Hash
 
-A _hash_ is a collection of data that is separated into pairs of keys and values.
-Each key/value pair makes up one unit in the hash. The entire collection of
-key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
+A _hash_ is a collection of data that is separated into pairs of keys and
+values. Each key/value pair makes up one unit in the hash. The entire collection
+of key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 
 ```ruby
 {"key" => "value", "another_key" => "another value"}
