@@ -55,7 +55,7 @@ of key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 {"key" => "value", "another_key" => "another value"}
 ```
 
-As with Hashes, you can use white space to make it more friendly for humans to
+As with Arrays, you can use white space to make it more friendly for humans to
 read:
 
 ```ruby
