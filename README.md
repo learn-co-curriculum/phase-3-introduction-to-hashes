@@ -55,8 +55,8 @@ of key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 {"key" => "value", "another_key" => "another value"}
 ```
 
-In this example the `String` `"key"` is the key to the value `"value"`. The
-key `"another_key"` is used to "point to" the value, `"another_value"`.
+In this example, the `String` `"key"` is the key to the value `"value"`. The
+key `"another_key"` is used to "point to" the `String` value, `"another_value"`.
 
 As with Arrays, you can use white space to make it more friendly for humans to
 read:
@@ -85,32 +85,32 @@ indicated by using the `=>` symbol (sometimes lovingly referred to as a
 
 ## Define Hash Keys
 
-_Keys_ are the things we look up by, in our grocery prices example these are
-the `String`s `"bread"`, `"milk"`, and `"eggs"`.
+_Keys_ are the things we "look up" with. In our grocery prices example, the
+keys are the `String`s `"bread"`, `"milk"`, and `"eggs"`.
 
-Hash keys can be any type of data but most of the time we use [strings][] (as
-seen in the grocery/prices example) or [symbols][]:
+`Hash` keys can be any type of data but most of the time we use
+[Strings][strings] (as seen in the grocery/prices example) or
+[Symbols][symbols] like the following:
 
 ```ruby
 {:name => "John Henry", :occupation => "Steel-driving man"}
 ```
 
-Somewhat confusingly, Ruby has another syntax for writing `Hash`es that have
-a symbol as key called "JSON (pronounced Jay-Sawn) Hashes." You'll definitely
-see both when you do research online, so you need to recognize that another
-way of writing the sample above is:
+Somewhat confusingly, Ruby has **another** syntax for writing `Hash`es that
+have a `Symbol` as key. We call `Hash`es defined this way "JSON (pronounced
+'Jay-Sawn') `Hash`es."
 
 ```ruby
 {name: "John Henry", occupation: "Steel-driving Man"}
 ```
 
-Ruby gained this style of Hash writing in order to increase its ability to
-share data with JavaScript. That's a great idea, but (sorry!) it's a little
-confusing when you're starting out. As we're getting started, we'll use the
-`=>` style, but be ready to see the "JSON Hash."
+You'll definitely see both when you do research online, so you need to
+recognize both.  Ruby gained "JSON Hashes" in order to increase its ability to
+share data with JavaScript (the JS in JSON stands for JavaScript). It's a great
+idea, but (sorry!) it's a little confusing when you're starting out.
 
-Most of the time, Rubyists prefer symbols (there are performance reasons that
-we'll cover elsewhere).
+Most of the time, for keys, Rubyists prefer [Symbols][symbols] (there are
+performance reasons that we'll cover elsewhere).
 
 For comparison, here's the same hash written using `String`s as the key:
 
@@ -151,7 +151,7 @@ This is what is referred to as the _implicit_ or "`Hash` literal" form. When
 assigning a variable, Ruby will interpret the curly braces on the left hand
 side as a Hash.
 
-Once created, we can access this hash with our `new_hash` variable:
+Once created, we can access this `Hash` with our `new_hash` variable:
 
 ```ruby
 new_hash = {
