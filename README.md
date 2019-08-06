@@ -58,7 +58,9 @@ of key/value pairs, which are comma separated, is enclosed in curly braces `{}`:
 In this example, the `String` `"key"` is the key to the value `"value"`. The
 key `"another_key"` is used to "point to" the `String` value, `"another_value"`.
 
-![Hash structure with key and value labeled](https://curriculum-content.s3.amazonaws.com/programming-univbasics-4/introduction-to-hashes/Image_14_HashStructure.png)
+<p align="center">
+  <img width="500" alt="Hash structure with key and value labeled" src="https://curriculum-content.s3.amazonaws.com/programming-univbasics-4/introduction-to-hashes/Image_14_HashStructure.png"/> 
+</p>
 
 As with Arrays, you can use white space to make it more friendly for humans to
 read:
