@@ -1,4 +1,4 @@
-# Ruby Hashes
+# Introduction to Hashes
 
 ## Learning Goals
 
